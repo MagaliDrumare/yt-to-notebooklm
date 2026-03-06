@@ -2,6 +2,10 @@ import { useState } from 'react'
 import './App.css'
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const HEADERS = {
+  'Content-Type': 'application/json',
+  'ngrok-skip-browser-warning': 'true',
+}
 
 export default function App() {
   const [query, setQuery] = useState('')
@@ -29,7 +33,7 @@ export default function App() {
     try {
       const res = await fetch(`${API}/api/search`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: HEADERS,
         body: JSON.stringify({ query, count, months, no_date_filter: noDateFilter }),
       })
       if (!res.ok) {
@@ -55,7 +59,7 @@ export default function App() {
     try {
       const res = await fetch(`${API}/api/notebook`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: HEADERS,
         body: JSON.stringify({ name: notebookName, urls }),
       })
       const data = await res.json()
