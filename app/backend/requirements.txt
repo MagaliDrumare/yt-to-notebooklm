@@ -1,0 +1,5 @@
+fastapi==0.108.0
+uvicorn==0.25.0
+yt-dlp
+notebooklm-py
+playwright
